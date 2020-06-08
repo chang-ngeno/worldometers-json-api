@@ -19,18 +19,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    # Check-out your repository under $GITHUB_WORKSPACE, and build the application
     - uses: actions/checkout@v2
     - uses: olafurpg/setup-scala@v6
     - uses: qcastel/github-actions-maven-cmd@1.0.1
-
-    # Check java version 
-    - name: Check Java Version
-      run: java -v
-      
-    # aBuild application
-    - name: Run build task
-      run: mvn clean package
+      with:
+        maven-args: "clean install"
       
     # Deploy to server
     - name: Deploy to Server
